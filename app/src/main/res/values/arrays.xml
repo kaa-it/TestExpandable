@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="channels">
+        <item>Channel 0</item>
+        <item>Channel 1</item>
+        <item>Channel 2</item>
+        <item>Channel 3</item>
+        <item>Channel 4</item>
+        <item>Channel 5</item>
+        <item>Channel 6</item>
+        <item>Channel 7</item>
+        <item>Channel 8</item>
+        <item>Channel 9</item>
+        <item>Channel 10</item>
+        <item>Channel 11</item>
+        <item>Channel 12</item>
+        <item>Channel 13</item>
+        <item>Channel 14</item>
+        <item>Channel 15</item>
+    </string-array>
+
+    <string-array name="speeds">
+        <item>Speed 115200 bps</item>
+        <item>Speed 921600 bps</item>
+    </string-array>
+
+    <string-array name="profiles">
+        <item>Profile 1</item>
+        <item>Profile 2</item>
+        <item>Profile 3</item>
+    </string-array>
+</resources>

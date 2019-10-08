@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Test Expandable</string>
+    <string name="mac_label" translatable="false">MAC</string>
+    <string name="channel_label">Channel</string>
+    <string name="title_modem">Modem</string>
+    <string name="title_control">Controller</string>
+    <string name="modem_information">Information</string>
+    <string name="modem_connect">Connect</string>
+    <string name="modem_not_connected">Modem is not connected</string>
+    <string name="modem_connected">Modem is connected</string>
+    <string name="control_on">on</string>
+    <string name="control_off">off</string>
+    <string name="control_dimming">Dimming</string>
+    <string name="control_mac">mac: %s</string>
+    <string name="modem_disconnect">disconnect</string>
+    <string name="nid">Nid</string>
+    <string name="group">Group</string>
+    <string name="power">Power</string>
+    <string name="temperature">Temperature</string>
+    <string name="title_modem_control">Modem Control</string>
+    <string name="title_modem_information">Modem Information</string>
+    <string name="title_control_control">Lamps Control</string>
+    <string name="control_color_temperature">Color Temperature</string>
+    <string name="title_control_lamps">Lamps</string>
+    <string name="item_lamp_power">Power: %d W</string>
+    <string name="lamp_info_dimming">Dimming</string>
+    <string name="lamp_info_dimming_value">%d %%</string>
+    <string name="lamp_info_group">Group</string>
+    <string name="lamp_info_power">Power</string>
+    <string name="lamp_info_power_value">%d W</string>
+    <string name="lamp_info_energy">Energy</string>
+    <string name="lamp_info_energy_value">%.3f kWh</string>
+    <string name="lamp_info_level">Level</string>
+    <string name="lamp_info_lux">Illuminance</string>
+    <string name="lamp_info_lux_value">%d lx</string>
+    <string name="lamp_info_rssi" translatable="false">Rssi</string>
+    <string name="lamp_info_temperature">Temperature</string>
+    <string name="lamp_info_temperature_value" translatable="false">%d °С</string>
+    <string name="lamp_info_profile">Profile</string>
+    <string name="lamp_info_rise">Rise</string>
+    <string name="lamp_info_set">Set</string>
+    <string name="lamp_info_rf_channel">RF-channel</string>
+    <string name="lamp_info_rf_power">RF-power</string>
+    <string name="lamp_info_rf_power_value">%d dBm</string>
+    <string name="lamp_info_smac">Source Mac</string>
+    <string name="lamp_info_service_time">Service time</string>
+    <string name="lamp_info_service_time_value">%d sec</string>
+    <string name="title_control_lamp_information">Lamp Information</string>
+    <string name="lamp_info_mac" translatable="false">Mac</string>
+    <string name="title_map">Map</string>
+    <string name="modem_info_power_value">%d dBm</string>
+    <string name="modem_info_temperature_value" translatable="false">%d °С</string>
+    <string name="control_broadcast">Broadcast</string>
+    <string name="title_control_lamp_schedule">Lamp Schedule</string>
+    <string name="control_schedule_d1">D1, %</string>
+    <string name="control_schedule_p1">P1, %</string>
+    <string name="control_schedule_d2">D2, %</string>
+    <string name="control_schedule_p2">P2, %</string>
+    <string name="control_send_schedule">Send</string>
+    <string name="control_schedule_profile">Profile</string>
+    <string name="control_half_of_night">Half-Of-The-Night</string>
+    <string name="control_not_set">Not set</string>
+    <string name="control_group">group: %s</string>
+    <string name="control_lamp">Lamp</string>
+</resources>
