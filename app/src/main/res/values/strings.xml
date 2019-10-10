@@ -62,4 +62,9 @@
     <string name="control_not_set">Not set</string>
     <string name="control_group">group: %s</string>
     <string name="control_lamp">Lamp</string>
+    <string name="control_schedule_pwm0">PWM0, %</string>
+    <string name="control_schedule_pwm1">PWM1, %</string>
+    <string name="control_schedule_pwm2">PWM2, %</string>
+    <string name="control_schedule_pwm3">PWM3, %</string>
+    <string name="control_schedule_pwm4">PWM4, %</string>
 </resources>
