@@ -8,6 +8,7 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
@@ -19,8 +20,11 @@ import java.util.*
 
 class ScheduleParametersFragment: Fragment() {
 
+    internal var callback: OnParametersChangesListener? = null
 
-
+    interface OnParametersChangesListener {
+        fun onChanged(d1: Int, p1: Int, d2: Int, p2: Int)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -99,6 +103,25 @@ class ScheduleParametersFragment: Fragment() {
                 parametersLayout.visibility = View.GONE*/
             }
         }
+
+        p1SeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                p1Value.text = progress.toString()
+                if (fromUser) {
+                    callback?.onChanged(d1Value.text.toString().toInt(),
+                        progress,
+                        d2Value.text.toString().toInt(),
+                        p2Value.text.toString().toInt())
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+        })
 
         time1Button.setOnClickListener { showTimePickerDialog {
             time1Button.text = "TIME1: $it"
