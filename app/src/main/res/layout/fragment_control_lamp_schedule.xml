@@ -32,14 +32,14 @@
             android:id="@+id/saveScheduleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:layout_marginBottom="@dimen/spacing_xlarge"
             android:text="@string/control_send_schedule"/>
 
-        <fragment
-            android:id="@+id/fragment_shedule_parameters"
-            android:name="ru.tvhelp.akruglov.testexpandable.ui.control.view.ScheduleParametersFragment"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_parameters_container"/>
 
     </LinearLayout>
 
