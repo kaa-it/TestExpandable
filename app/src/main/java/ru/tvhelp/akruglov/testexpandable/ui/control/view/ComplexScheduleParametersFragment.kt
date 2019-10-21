@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_complex_schedule_parameters.*
 import kotlinx.android.synthetic.main.fragment_simple_schedule_parameters.*
 import kotlinx.android.synthetic.main.schedule_parameters_group.*
+import org.jetbrains.anko.support.v4.toast
 import ru.tvhelp.akruglov.testexpandable.R
 import ru.tvhelp.akruglov.testexpandable.slideDown
 import ru.tvhelp.akruglov.testexpandable.slideUp
@@ -50,6 +51,10 @@ class ComplexScheduleParametersFragment: Fragment() {
                 pwm2SeekBar.progress = value.pwm2
                 pwm3SeekBar.progress = value.pwm3
                 pwm4SeekBar.progress = value.pwm4
+                time1Button.text = "TIME1: ${value.time1}"
+                time2Button.text = "TIME2: ${value.time2}"
+                time3Button.text = "TIME3: ${value.time3}"
+                time4Button.text = "TIME4: ${value.time4}"
             }
 
             field = value
@@ -199,20 +204,44 @@ class ComplexScheduleParametersFragment: Fragment() {
             }
         })
 
-        time1Button.setOnClickListener { showTimePickerDialog {
-            time1Button.text = "TIME1: $it"
+        time1Button.setOnClickListener{ showTimePickerDialog(parameters.time1) {
+            if (it > parameters.time2) {
+                toast("Time1 must be less then Time2")
+            } else {
+                time1Button.text = "TIME1: $it"
+                parameters.time1 = it
+                callback?.onChanged(parameters)
+            }
         } }
 
-        time2Button.setOnClickListener { showTimePickerDialog {
-            time2Button.text = "TIME2: $it"
+        time2Button.setOnClickListener { showTimePickerDialog(parameters.time2) {
+            if (it < parameters.time1 || it > parameters.time3) {
+                toast("Time2 must be greater then Time2 and less then Time3")
+            } else {
+                time2Button.text = "TIME2: $it"
+                parameters.time2 = it
+                callback?.onChanged(parameters)
+            }
         } }
 
-        time3Button.setOnClickListener { showTimePickerDialog {
-            time3Button.text = "TIME3: $it"
+        time3Button.setOnClickListener { showTimePickerDialog(parameters.time3) {
+            if (it < parameters.time2 || it > parameters.time4) {
+                toast("Time3 must be greater then Time2 and less then Time4")
+            } else {
+                time3Button.text = "TIME3: $it"
+                parameters.time3 = it
+                callback?.onChanged(parameters)
+            }
         } }
 
-        time4Button.setOnClickListener { showTimePickerDialog {
-            time4Button.text = "TIME4: $it"
+        time4Button.setOnClickListener { showTimePickerDialog(parameters.time4) {
+            if (it < parameters.time3) {
+                toast("Time4 must be greater then Time3")
+            } else {
+                time4Button.text = "TIME4: $it"
+                parameters.time4 = it
+                callback?.onChanged(parameters)
+            }
         } }
     }
 
@@ -224,13 +253,22 @@ class ComplexScheduleParametersFragment: Fragment() {
         pwm2SeekBar.progress = parameters.pwm2
         pwm3SeekBar.progress = parameters.pwm3
         pwm4SeekBar.progress = parameters.pwm4
+        time1Button.text = "TIME1: ${parameters.time1}"
+        time2Button.text = "TIME2: ${parameters.time2}"
+        time3Button.text = "TIME3: ${parameters.time3}"
+        time4Button.text = "TIME4: ${parameters.time4}"
     }
 
-    fun showTimePickerDialog(f: (String)->Unit) {
-        val timePicker = TimePickerFragment()
+    fun showTimePickerDialog(time: String, f: (String)->Unit) {
+        val timePicker = TimePickerFragment(time)
 
         timePicker.callback = f
 
         timePicker.show(childFragmentManager, "timePicker")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback = null
     }
 }

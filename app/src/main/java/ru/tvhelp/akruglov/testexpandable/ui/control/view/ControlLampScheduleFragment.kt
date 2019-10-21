@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_control_lamp_schedule.*
+import kotlinx.android.synthetic.main.schedule_parameters_group.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -61,8 +62,9 @@ class ControlLampScheduleFragment:
     fun provideControlLampSchedulePresenter(): ControlLampSchedulePresenter = presenter
 
     override fun onAttachFragment(childFragment: Fragment) {
-        if (childFragment is SimpleScheduleParametersFragment) {
-            childFragment.callback = this
+        when (childFragment) {
+            is SimpleScheduleParametersFragment -> childFragment.callback = this
+            is ComplexScheduleParametersFragment -> childFragment.callback = this
         }
     }
 
@@ -288,15 +290,42 @@ class ControlLampScheduleFragment:
 
         entries.add(Entry(0.0f, lpwm))
         entries.add(Entry(set, pwm0))
-        entries.add(Entry(t1, pwm0))
-        entries.add(Entry(t1, pwm1))
-        entries.add(Entry(t2, pwm1))
-        entries.add(Entry(t2, pwm2))
-        entries.add(Entry(t3, pwm2))
-        entries.add(Entry(t3, pwm3))
-        entries.add(Entry(t4, pwm3))
-        entries.add(Entry(t4, pwm4))
-        entries.add(Entry(rise, pwm4))
+
+        var lastPWM = pwm0
+
+        when {
+            set < t1 -> {
+                entries.add(Entry(t1, pwm0))
+                entries.add(Entry(t1, pwm1))
+                entries.add(Entry(t2, pwm1))
+                entries.add(Entry(t2, pwm2))
+                lastPWM = pwm2
+            }
+            set in t1..t2 -> {
+                entries.add(Entry(t2, pwm0))
+                entries.add(Entry(t2, pwm2))
+                lastPWM = pwm2
+            }
+        }
+
+        when {
+            rise < t3 -> {
+                entries.add(Entry(rise, lastPWM))
+            }
+            rise in t3..t4 -> {
+                entries.add(Entry(t3, lastPWM))
+                entries.add(Entry(t3, pwm3))
+                entries.add(Entry(rise, pwm3))
+            }
+            else -> {
+                entries.add(Entry(t3, lastPWM))
+                entries.add(Entry(t3, pwm3))
+                entries.add(Entry(t4, pwm3))
+                entries.add(Entry(t4, pwm4))
+                entries.add(Entry(rise, pwm4))
+            }
+        }
+
         entries.add(Entry(100f, lpwm))
 
         return entries
@@ -378,6 +407,15 @@ class ControlLampScheduleFragment:
 
             graph.axisRight.addLimitLine(p2Limit)
         }*/
+
+        val mv = MyMarkerView(
+            activity!!,
+            R.layout.custom_marker_view,
+            parameters.set,
+            tNSeconds
+        )
+        mv.chartView = graph
+        graph.marker = mv
 
         graph.notifyDataSetChanged()
 

@@ -24,7 +24,7 @@ class ControlLampSchedulePresenter: MvpPresenter<ControlLampScheduleView>() {
         pwm3 = 70,
         time4 = "04-00",
         pwm4 = 100,
-        rise = "04-30",
+        rise = "03-21",
         set = "15-28"
     )
 
